@@ -1,18 +1,28 @@
-import React, { Component } from "react";
-import Header from "../../components/Header/Header";
+import React, { Component } from "react"
+import {bool, func} from 'prop-types'
+import Header from "../../components/Header/Header"
+import {Map} from "../../components/Map/Map"
 import './MapPage.scss'
+import { withAuth } from '../../AuthContext/AuthContext'
 
-class MapPage extends Component {
+export class MapPage extends Component {
+  static propTypes = {
+    navigateTo: func,
+    isLoggedIn: bool,
+    login: func,
+    logout: func,
+  }
   
   render () {
-    const { navigateTo } = this.props 
+    const { navigateTo } = this.props
+
     return (
-      <div>
-      <Header navigateTo={navigateTo} />
-      <h1>Hello, it's a <strong>map</strong> page</h1>
+      <div className="mapPage">
+        <Header navigateTo={navigateTo} />
+          <div className="map"><Map></Map></div>
       </div>
     )
   }
 }
 
-export default MapPage 
+export const WithAuthMapPage = withAuth(MapPage) 

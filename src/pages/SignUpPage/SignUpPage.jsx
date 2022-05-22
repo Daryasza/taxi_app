@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import {bool, func} from 'prop-types'
 import './SignUpPage.scss'
 import map from '../../assets/map.svg'
 import logo from '../../assets/logo.svg'
@@ -6,12 +7,19 @@ import Header from '../../components/Header/Header'
 
 
 class SignUpPage extends Component {
+  static propTypes = {
+    navigateTo: func,
+    isLoggedIn: bool,
+    login: func,
+    logout: func,
+  }
+
   constructor(props) {
     super(props)
     this.state = { email: "", name: "", password: "" }
-    this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
-  
+
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render () {

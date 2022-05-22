@@ -1,17 +1,36 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import {bool, func} from 'prop-types'
 import './LoginPage.scss'
 import map from '../../assets/map.svg'
 import logo from '../../assets/logo.svg'
-import Header from '../../components/Header/Header'
+// import Header from '../../components/Header/Header'
+import { withAuth } from "../../AuthContext/AuthContext"
 
-class LoginPage extends Component {
+export class LoginPage extends Component {
+  static propTypes = {
+    navigateTo: func,
+    isLoggedIn: bool,
+    login: func,
+    logout: func,
+  }
+
   constructor(props) {
     super(props)
     this.state = { email: "", password: "" };
-    this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   
   handleChange = e => this.setState({ [e.target.name]: e.target.value })
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { email, password } = e.target
+    const { navigateTo } = this.props
+
+    await this.props.login(email.value, password.value)
+    navigateTo('map')
+  }
 
   render () {
     const { navigateTo } = this.props
@@ -19,14 +38,14 @@ class LoginPage extends Component {
     return (
       <div className="wrapper">
         <div className="left-col">
-         <img className='logo' src={logo} alt='logo'/>
+          <img className='logo' src={logo} alt='logo'/>
         </div>
-        <Header />
+        
         <div className="right-col" style={{backgroundImage: `url(${ map })`}}>
           <div className="form-wrapper">
-            <form className="form" onSubmit={() => navigateTo('map')}>
+            <form className="form" onSubmit={this.handleSubmit}>
               <div className="container">
-                <h1 className="form__title">Войти</h1>
+                <h1 className="form__title">Войти:</h1>
                 <label className="form__input input">
                   <div className="input__name">Email:</div>
                   <input
@@ -52,7 +71,7 @@ class LoginPage extends Component {
                 <div className="form__forgottenPass-wrapper">
                   <button type="button" className="form__forgottenPass link" onClick={() => navigateTo('signin')}>Забыли пароль?</button>
                 </div>
-                <input type="submit" className="submit" value='Войти' />
+                <input type="submit" className="submit" value='Войти' id='enter'/>
               </div>
             </form>
             <div className="new-user"> Новый пользователь? <button type="button" className="link" onClick={() => navigateTo('signin')}>Регистрация</button></div>
@@ -63,5 +82,5 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage
+export const WithAuthLoginPage = withAuth(LoginPage)
 

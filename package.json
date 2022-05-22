@@ -6,13 +6,17 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "mapbox-gl": "^2.8.2",
     "normalize.css": "^8.0.1",
+    "path-browserify": "^1.0.1",
+    "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-app-polyfill": "^3.0.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
     "sass": "^1.51.0",
     "source-map-explorer": "^2.5.2",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -53,6 +57,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-interactions": "^6.4.22",
@@ -63,6 +69,7 @@
     "@storybook/preset-create-react-app": "^4.1.0",
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "^0.0.11",
+    "babel-loader": "^8.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "webpack": "^5.72.1"
   },
