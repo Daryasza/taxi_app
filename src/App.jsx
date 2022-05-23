@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = { page: 'login' }
-    this.navigateTo.bind(this)
+    this.navigateTo = this.navigateTo.bind(this)
   }
 
   pages = {
@@ -22,20 +22,17 @@ class App extends Component {
   }
  
   navigateTo = (page) => {
-    if (this.props.isLoggedIn) {
-      this.setState({ page })
-    } else {
-      this.setState({ page: 'login' })
-    }
+    this.setState({ 
+      page: page ==='signin' || this.props.isLoggedIn ? page : 'login' 
+    })
   }
+  
 
   render() {
     const Page = this.pages[this.state.page]
 
     return (
-      <React.StrictMode>
-        <Page navigateTo={this.navigateTo}/>
-      </React.StrictMode>
+      <Page navigateTo={this.navigateTo}/>
     )
   }
 }
