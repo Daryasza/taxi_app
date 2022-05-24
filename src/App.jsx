@@ -18,12 +18,12 @@ class App extends Component {
     login: (props) => <WithAuthLoginPage {...props}/>,
     profile: (props) => <WithAuthProfilePage {...props}/>,
     map: (props) => <WithAuthMapPage {...props}/>,
-    signin: (props) => <SignUpPage {...props}/>,
+    signup: (props) => <SignUpPage {...props}/>,
   }
  
   navigateTo = (page) => {
     this.setState({ 
-      page: page ==='signin' || this.props.isLoggedIn ? page : 'login' 
+      page: page ==='signup' || this.props.isLoggedIn ? page : 'login' 
     })
   }
   

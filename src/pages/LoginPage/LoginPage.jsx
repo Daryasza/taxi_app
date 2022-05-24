@@ -69,12 +69,12 @@ export class LoginPage extends Component {
                   />
                 </label>
                 <div className="form__forgottenPass-wrapper">
-                  <button type="button" className="form__forgottenPass link" onClick={() => navigateTo('signin')}>Забыли пароль?</button>
+                  <button type="button" className="form__forgottenPass link" onClick={() => navigateTo('signup')}>Забыли пароль?</button>
                 </div>
                 <input type="submit" className="submit" value='Войти' id='enter'/>
               </div>
             </form>
-            <div className="new-user"> Новый пользователь? <button type="button" className="link" onClick={() => navigateTo('signin')}>Регистрация</button></div>
+            <div className="new-user"> Новый пользователь? <button type="button" className="link" onClick={() => navigateTo('signup')}>Регистрация</button></div>
           </div>
         </div>
       </div>
