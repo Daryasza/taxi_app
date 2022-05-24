@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import { WithAuthLoginPage } from "./pages/LoginPage/LoginPage"
 import { WithAuthProfilePage } from './pages/ProfilePage/ProfilePage'
 import { WithAuthMapPage } from './pages/MapPage/MapPage'
-import SignUpPage from './pages/SignUpPage/SignUpPage'
+import {WithAuthSignUpPage} from './pages/SignUpPage/SignUpPage'
 
 import { withAuth } from "./AuthContext/AuthContext";
 
@@ -18,7 +18,7 @@ class App extends Component {
     login: (props) => <WithAuthLoginPage {...props}/>,
     profile: (props) => <WithAuthProfilePage {...props}/>,
     map: (props) => <WithAuthMapPage {...props}/>,
-    signup: (props) => <SignUpPage {...props}/>,
+    signup: (props) => <WithAuthSignUpPage {...props}/>,
   }
  
   navigateTo = (page) => {

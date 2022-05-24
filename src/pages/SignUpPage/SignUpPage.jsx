@@ -4,9 +4,10 @@ import './SignUpPage.scss'
 import map from '../../assets/map.svg'
 import logo from '../../assets/logo.svg'
 import Header from '../../components/Header/Header'
+import { withAuth } from "../../AuthContext/AuthContext"
 
 
-class SignUpPage extends Component {
+export class SignUpPage extends Component {
   static propTypes = {
     navigateTo: func,
     isLoggedIn: bool,
@@ -18,6 +19,16 @@ class SignUpPage extends Component {
     super(props)
     this.state = { email: "", name: "", password: "" }
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleSubmit = async e => {
+    e.preventDefault();
+
+    const { email, password } = e.target
+    const { navigateTo } = this.props
+
+    await this.props.login(email.value, password.value)
+    navigateTo('map')
   }
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -33,7 +44,7 @@ class SignUpPage extends Component {
       <Header />
       <div className="right-col" style={{backgroundImage: `url(${ map })`}}>
         <div className="form-wrapper">
-          <form className="form form--signup" onSubmit={() => navigateTo('map')}>
+          <form className="form form--signup" onSubmit={this.handleSubmit}>
             <div className="container">
               <h1 className="form__title">Регистрация</h1>
               <label className="form__input input">
@@ -80,4 +91,4 @@ class SignUpPage extends Component {
   }
 }
 
-export default SignUpPage;
+export const WithAuthSignUpPage = withAuth(SignUpPage)
