@@ -1,3 +1,161 @@
-strong {
-  color: red;
+.profile-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+}
+
+.profile-main {
+  width: 100%;
+  height: 100%;
+
+}
+.profile-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.payform {
+  margin-top: 100px;
+  width: 60%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .form__title {
+    margin-top: 40px;
+  }
+}
+
+
+.payform__main {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.payform-leftcol {
+  width: 45%;
+}
+
+.payform__input {
+  width: 90%;
+  color: #828282;
+  font-weight: 300;
+
+  .payformInput__name {
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #E4E4E4;
+    font-size: 16px;
+    margin-bottom: 20px;
+
+    ::placeholder {
+      color: #828282;
+    }
+
+    &:focus, :active, :hover {
+      outline: 0;
+      outline-offset: 0;
+      border-bottom: 2px solid #2D7EF6;
+      transition: ease-in-out, border-bottom .2s ease-in-out;
+    }
+  }
+}
+
+.payform__input-oneline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.payform__input--oneline {
+  width: 40%;
+
+  input {
+    width: 100%;
+    ::placeholder {
+      color: #828282;
+      font-weight: 300;
+    }
+  }
+}
+
+.card {
+  width: 300px;
+  height: 158px;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 25px 15px 15px;
+
+  .card__topline, .card__footline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+
+  .card__number {
+    font-size: 21px;
+  }
+
+  .small-logo {
+    width: 33px;
+    height: 33px;
+  }
+
+  .card__logo {
+    height: 28px;
+  }
+
+  .card__chip {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.payform-btn{
+  border: 0;
+  padding: 15px 80px;
+  background-color: #FDBF5A;
+  color: black;
+  border-radius: 70px;
+  margin-bottom: 50px;
+}
+
+.modal {
+  margin-top: 160px;
+  width: 60%;
+  padding: 70px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form__subtitle {
+    margin-bottom: 30px;
+  }
+
+  .payform-btn {
+    display: inline-block;
+    margin-bottom: 0;
+  }
 }

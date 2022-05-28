@@ -1,43 +1,41 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {bool, func} from 'prop-types'
+import { Link } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { logout } from '../../app/actions';
+
 import './Header.scss'
 import logo from '../../assets/logo.svg'
-import { MyContext } from '../../AuthContext/AuthContext'
+
 
 function Header (props) {
-  const { navigateTo } = props
-  const value = useContext(MyContext);
-
-  const onLogOut = async (e) => {
+  const onLogOut = (e) => {
     e.preventDefault()
-    
-    await value.logout()
-    navigateTo('login')
+    localStorage.removeItem('isLogged')
+    props.logout()
   }
 
   return (
     <header className='header'>
-
       <div className='header__right-col'>
         <img className='logo' src={logo} alt='logo'/>
       </div>
-
       <nav className='header__left-col'>
-        <button onClick={() => navigateTo('map')} className='header__btn'>Карта</button> 
-        <button onClick={() => navigateTo('profile')} className='header__btn'>Профиль</button>
-        <button onClick={onLogOut} className='header__btn'>Выйти</button>
+        <Link to={`/`} className='header__btn'>Карта</Link>
+        <Link to={`/profile`} className='header__btn'>Профиль</Link>
+        <a onClick={onLogOut} className='header__btn' href='/'>Выйти</a>
       </nav>
-
     </header>
   )
 }
 
-
 Header.propTypes = {
-  navigateTo: func,
   isLoggedIn: bool,
-  login: func,
   logout: func,
 }
 
-export default Header
+export default connect(
+  (state) => ({isLoggedIn: state.authReducer.isLoggedIn}),
+  {logout}
+)(Header)

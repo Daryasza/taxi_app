@@ -1,17 +1,20 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import {bool, func} from 'prop-types'
+
+import { Link, Navigate } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { authenticate } from "../../app/actions";
+
 import './LoginPage.scss'
 import map from '../../assets/map.svg'
 import logo from '../../assets/logo.svg'
-// import Header from '../../components/Header/Header'
-import { withAuth } from "../../AuthContext/AuthContext"
 
-export class LoginPage extends Component {
+
+export class LoginPage extends PureComponent {
   static propTypes = {
-    navigateTo: func,
     isLoggedIn: bool,
-    login: func,
-    logout: func,
+    login: func
   }
 
   constructor(props) {
@@ -24,19 +27,22 @@ export class LoginPage extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const { email, password } = e.target
-    const { navigateTo } = this.props
 
-    await this.props.login(email.value, password.value)
-    navigateTo('map')
+    this.props.authenticate(email.value, password.value)
   }
 
   render () {
-    const { navigateTo } = this.props
-
+    const {isLoggedIn} = this.props
+    
     return (
       <div className="wrapper">
+
+        {isLoggedIn && (
+          <Navigate to="/" replace={true} />
+        )}
+
         <div className="left-col">
           <img className='logo' src={logo} alt='logo'/>
         </div>
@@ -55,6 +61,7 @@ export class LoginPage extends Component {
                     value={this.state.email}
                     onChange={this.handleChange}
                     autoComplete="username"
+                    required
                   />
                 </label>
                 <label className="form__input input">
@@ -66,15 +73,18 @@ export class LoginPage extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                     autoComplete="current-password"
+                    required
                   />
                 </label>
                 <div className="form__forgottenPass-wrapper">
-                  <button type="button" className="form__forgottenPass link" onClick={() => navigateTo('signup')}>Забыли пароль?</button>
+                  <Link to={`/signup`} className="form__forgottenPass link">Забыли пароль?</Link>
                 </div>
                 <input type="submit" className="submit" value='Войти' id='enter'/>
               </div>
             </form>
-            <div className="new-user"> Новый пользователь? <button type="button" className="link" onClick={() => navigateTo('signup')}>Регистрация</button></div>
+            <div className="new-user"> Новый пользователь? 
+              <Link to={`/signup`} className="link">Регистрация</Link>
+            </div>
           </div>
         </div>
       </div>
@@ -82,5 +92,8 @@ export class LoginPage extends Component {
   }
 }
 
-export const WithAuthLoginPage = withAuth(LoginPage)
+export const WithAuthLoginPage = connect(
+  (state) => ({isLoggedIn: state.authReducer.isLoggedIn}),
+  {authenticate}
+)(LoginPage)
 

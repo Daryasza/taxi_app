@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
+
 import {access} from '../../env.js'
+
 
 mapboxgl.accessToken = access.accessToken
 
@@ -14,8 +17,6 @@ export class Map extends Component {
       style: access.mapStyleLink,
       testMode: true,
     });
-
-    // this.map.scrollZoom.sdisable()
   }
 
   componentWillUnmount() {
@@ -23,12 +24,7 @@ export class Map extends Component {
   }
 
   render() {
-    const style = {
-      width: '100%',
-      height: '100%'
-    };
-
-    return <div className='map' style={style} ref={el => this.mapContainer = el} />;
+    return <div className='map' ref={el => this.mapContainer = el} />;
   }
 }
 
