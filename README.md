@@ -1,3 +1,8 @@
+## Temporary CREDENTIALS to access the app:
+
+**email: "v@e"**
+**password: "c"** 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

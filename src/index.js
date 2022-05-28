@@ -1,16 +1,18 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
+import { AuthContextProvider } from "./AuthContext/AuthContext";
 
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
