@@ -1,6 +1,5 @@
 export const serverLogin = async (email, password) => {
   try {
-    console.log('serverLogin')
     return fetch('https://loft-taxi.glitch.me/auth', {
     method: 'POST',
     headers: {
@@ -16,7 +15,6 @@ export const serverLogin = async (email, password) => {
 
 export const serverSignUp = async (email, password, name, surname) => {
   try {
-    console.log('serverSignUp')
     return fetch('https://loft-taxi.glitch.me/register', {
     method: 'POST',
     headers: {
@@ -33,7 +31,6 @@ export const serverSignUp = async (email, password, name, surname) => {
 
 export const serverPostCard = async (cardNumber, expiryDate, cardName, cvc, token ) => {
   try {
-    console.log('serverPostCard')
     return fetch('https://loft-taxi.glitch.me/card', {
     method: 'POST',
     headers: {

@@ -15,15 +15,12 @@ export const cardMiddleware = (store) => (next) => async (action) => {
 
       const res = await serverPostCard(cardNumber, expiryDate, cardName, cvc, token)
       if (res.success) {
-        console.log(res)
         store.dispatch(proceed())
         localStorage.setItem('CARD', true)
 
       } else {
         alert(res.error)
       }
-
-      console.log('cardmiddleware')
 
     } else {
       next(action)

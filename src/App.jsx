@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={ <WithAuthLoginPage /> } exact/>
+          <Route path='/login' element={ <WithAuthLoginPage /> }/>
           <Route path='/signup' element={ <WithAuthSignUpPage /> }/>
           <Route path="/profile" element={<PrivateRoute><WithAuthProfilePage /></PrivateRoute>}/>
           <Route path="/" element={<PrivateRoute><WithAuthMapPage /></PrivateRoute>}/>
