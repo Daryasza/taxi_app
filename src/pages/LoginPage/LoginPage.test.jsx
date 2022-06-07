@@ -3,11 +3,24 @@ import { WithAuthLoginPage } from './LoginPage.jsx'
 import { BrowserRouter}  from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import { Provider } from 'react-redux';
-import { store } from '../../app/store';
+
+import { createStore } from 'redux'
+import { combineReducers } from "redux";
+import authReducer from "../../app/reducers/authReducer";
+
+let store
 
 describe("LoginPage", () => {
+  beforeEach(() => {
+    store = createStore(
+      combineReducers({
+        authReducer,
+      })
+    );
+  });
+
   it("renders correctly", () => {
-    const { getByLabelText } = render(<Provider store={store}><WithAuthLoginPage /></Provider>, {wrapper: BrowserRouter});
+    render(<Provider store={store}><WithAuthLoginPage /></Provider>, {wrapper: BrowserRouter})
     expect(screen.getByLabelText('Email:')).toHaveAttribute('name', 'email')
     expect(screen.getByLabelText('Пароль:')).toHaveAttribute('name', 'password')
   });

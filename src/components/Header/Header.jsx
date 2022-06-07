@@ -13,6 +13,7 @@ function Header (props) {
   const onLogOut = (e) => {
     e.preventDefault()
     localStorage.removeItem('isLogged')
+    // localStorage.removeItem('CARD')
     props.logout()
   }
 

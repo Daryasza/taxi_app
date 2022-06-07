@@ -4,6 +4,11 @@ export const SIGN_UP = 'SIGN_UP'
 export const AUTHENTICATE = 'AUTHENTICATE'
 export const SEND_CARD = 'SEND_CARD'
 export const PROCEED = 'PROCEED'
+export const GET_ADDRESS = 'GET_ADDRESS'
+export const SHOW_ADDRESS = 'SHOW_ADDRESS'
+export const GET_ROUTE = 'GET_ROUTE'
+export const SHOW_ROUTE = 'SHOW_ROUTE'
+
 
 export const login = () => ({type: LOG_IN})
 
@@ -11,7 +16,24 @@ export const logout = () => ({type: LOG_OUT})
 
 export const proceed = () => ({type: PROCEED})
 
-export const signup = (email, password, name, surname) => ({
+export const get_address = () => ({type: GET_ADDRESS})
+
+export const show_address = (payload) => ({
+  type: SHOW_ADDRESS,
+  payload
+})
+
+export const get_route = (from, to) => ({
+  type: GET_ROUTE,
+  payload: {from, to}
+})
+
+export const show_route = (payload) => ({
+  type: SHOW_ROUTE,
+  payload,
+})
+
+export const sign_up = (email, password, name, surname) => ({
   type: SIGN_UP,
   payload: {
     email,
@@ -26,7 +48,7 @@ export const authenticate = (email, password) => ({
   payload: {email, password}
 })
 
-export const sendcard = (cardNumber, expiryDate, cardName, cvc) => ({
+export const send_card = (cardNumber, expiryDate, cardName, cvc) => ({
   type: SEND_CARD,
   payload: {
     cardNumber,

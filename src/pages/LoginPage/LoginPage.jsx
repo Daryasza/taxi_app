@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react"
-import {bool, func} from 'prop-types'
 
 import { Link, Navigate } from "react-router-dom";
 
@@ -12,14 +11,9 @@ import logo from '../../assets/logo.svg'
 
 
 export class LoginPage extends PureComponent {
-  static propTypes = {
-    isLoggedIn: bool,
-    login: func
-  }
-
   constructor(props) {
     super(props)
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "" }
     this.handleChange = this.handleChange.bind(this)
   }
   

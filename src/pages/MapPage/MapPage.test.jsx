@@ -1,16 +1,29 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import React from "react"
+import { render } from "@testing-library/react"
 import { WithAuthMapPage } from './MapPage'
-import { Provider } from 'react-redux';
-import { store } from '../../app/store';
-import { BrowserRouter}  from "react-router-dom";
+import { Provider } from 'react-redux'
+import { BrowserRouter}  from "react-router-dom"
+import { createStore } from 'redux'
+import { combineReducers } from "redux"
+import cardReducer from "../../app/reducers/cardReducer"
+import authReducer from "../../app/reducers/authReducer"
+
+let store
 
 jest.mock("../../components/Map/Map", () => ({
-  Map: () => <div>Map</div> 
+  ConnectedMap: () => <div>Map</div> 
 }));
 
-
 describe("Map Page", () => {
+
+  beforeEach(() => {
+    store = createStore(
+      combineReducers({
+        cardReducer,
+        authReducer
+      })
+    );
+  });
 
   it("renders correctly", () => {
     const { container } = render(<Provider store={store}><WithAuthMapPage /></Provider>, {wrapper: BrowserRouter})

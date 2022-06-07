@@ -1,9 +1,8 @@
 import React, { Component } from "react"
-import {bool, func} from 'prop-types'
 import { Link, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { signup } from "../../app/actions";
+import { sign_up } from "../../app/actions";
 
 import './SignUpPage.scss'
 import map from '../../assets/map.svg'
@@ -11,12 +10,6 @@ import logo from '../../assets/logo.svg'
 
 
 export class SignUpPage extends Component {
-  static propTypes = {
-    isLoggedIn: bool,
-    login: func,
-    signup:func
-  }
-
   constructor(props) {
     super(props)
     this.state = { email: "", name: "", password: "" }
@@ -30,7 +23,7 @@ export class SignUpPage extends Component {
     const { email, name, password } = e.target
     const [firstName, secondName] = name.value.split(' ')
     
-    this.props.signup(email.value, password.value, firstName, secondName)
+    this.props.sign_up(email.value, password.value, firstName, secondName)
   }
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -105,5 +98,5 @@ export class SignUpPage extends Component {
 
 export const WithAuthSignUpPage = connect(
   (state) => ({isLoggedIn: state.authReducer.isLoggedIn}),
-  {signup}
+  {sign_up}
 )(SignUpPage)

@@ -1,10 +1,9 @@
 import React, { Component } from "react"
-import {bool, func} from 'prop-types'
 
 import { Link } from "react-router-dom"
 
 import { connect } from "react-redux"
-import { sendcard } from "../../app/actions"
+import { send_card } from "../../app/actions"
 
 import Header from "../../components/Header/Header"
 
@@ -15,14 +14,15 @@ import cardChip from '../../assets/cardChip.svg'
 import MCIcon from '../../assets/MCIcon.svg'
 
 export class ProfilePage extends Component {
-  state = { name: "", card: "", date: "", cvc: "" }
-
-  static propTypes = {
-    isLoggedIn: bool,
-    login: func,
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onInputCard = this.onInputCard.bind(this)
+    this.onInputDate = this.onInputDate.bind(this)
+    this.state = { name: "", card: "", date: "", cvc: "" }
   }
-
-  handleChange = e => this.setState({ [e.target.name]: e.target.value })
+  
 
   handleSubmit = e => {
     e.preventDefault();
@@ -30,17 +30,14 @@ export class ProfilePage extends Component {
     let { name, card, date, cvc } = e.target
 
     date = date.value.toString().split('-').join('/');
-
-    this.props.sendcard(card.value, date, name.value, cvc.value )
+    this.props.send_card(card.value, date, name.value, cvc.value )
   }
 
-  onInputCard = e => {
-    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
-  }
+  handleChange = e => this.setState({ [e.target.name]: e.target.value })
 
-  onInputDate = e => {
-    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/^(.{2})(.{1})(.*)/g, '$1/$2$3').trim();
-  }
+  onInputCard = e => e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim()
+
+  onInputDate = e => e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/^(.{2})(.{1})(.*)/g, '$1/$2$3').trim()
 
   render () {
     const {cardAdded} = this.props
@@ -109,6 +106,7 @@ export class ProfilePage extends Component {
                       <div className="payformInput__name">CVC</div>
                       <input
                         placeholder="667"
+                        maxLength={3}
                         type="text"
                         name="cvc"
                         value={this.state.cvc}
@@ -144,4 +142,4 @@ export class ProfilePage extends Component {
   }
 }
 
-export const WithAuthProfilePage = connect((state => ({cardAdded: state.cardReducer.cardAdded})), {sendcard})(ProfilePage)
+export const WithAuthProfilePage = connect((state => ({cardAdded: state.cardReducer.cardAdded})), {send_card})(ProfilePage)
