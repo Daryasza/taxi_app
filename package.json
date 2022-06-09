@@ -79,6 +79,7 @@
     "babel-loader": "^8.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "redux-mock-store": "^1.5.4",
+    "redux-saga-tester": "^1.0.874",
     "webpack": "^5.72.1"
   },
   "config": {

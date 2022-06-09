@@ -6,7 +6,6 @@ import { fetchLogin, fetchSignUp, fetchPostCard, fetchAddressList, fetchRoutes }
 export function* authSaga(action) {
 
   const res = yield call(fetchLogin, action.payload.email, action.payload.password) 
-  
 
   if (res.success) {
     yield put(login());
