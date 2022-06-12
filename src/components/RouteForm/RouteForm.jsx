@@ -1,43 +1,37 @@
-import React, { Component } from "react"
-import './RouteForm.scss'
-
+import React, { useState } from "react"
+import { connect } from "react-redux"
+import { get_address, get_route } from '../../app/actions'
+import { useForm } from "react-hook-form"
+import { useDispatch } from "react-redux"
 import business from '../../assets/business.png'
 import standard from '../../assets/standard.png'
 import premium from '../../assets/premium.png'
+import './RouteForm.scss'
 
-import { connect } from "react-redux";
-import { get_address, get_route } from '../../app/actions'
+export function RouteForm(props) {
+  const dispatch = useDispatch()
+  const { register, handleSubmit } = useForm()
+  const [from, setFrom] = useState()
+  const [to, setTo] = useState()
 
-export class RouteForm extends Component {
-  constructor(props) {
-    super(props)
-    this.toggleClick = this.toggleClick.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.selectOnClick = this.selectOnClick.bind(this)
-    this.selectOnChange = this.selectOnChange.bind(this)
-    this.selectOptions = this.selectOptions.bind(this)
-    this.selectFromOptions = this.selectFromOptions.bind(this)
-    this.selectToOptions = this.selectToOptions.bind(this)
-    this.state = {
-      from: '', to: ''
-    }
-  }
-
-  toggleClick = (e) => {
+  const toggleClick = (e) => {
     e.preventDefault()
 
-    function getChildren(n, currentEl){
-      let siblings = []
-
-      for ( ; n; n = n.nextSibling ) 
-        if ( n.nodeType === 1 && n !== currentEl) {
-          siblings.push( n )
+    function getSiblings(el){
+        let siblings = []
+        let current = el.parentNode.firstChild
+        
+        while(current) { 
+            if (current.nodeType === 1 && current !== el) {
+                siblings.push(current)
+            }
+            current = current.nextSibling
         }
-      return siblings
+        return siblings
     }
 
     const selected = e.target.matches('li') ? e.target : e.target.parentNode
-    const siblings =  getChildren(selected.parentNode.firstChild, selected)
+    const siblings =  getSiblings(selected)
 
     selected.classList.add('tariff__item--active')
     siblings.forEach(element => {
@@ -45,80 +39,75 @@ export class RouteForm extends Component {
     })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    const {from, to}  = this.state
-    this.props.get_route(from, to)
+  const onSubmit = (data) => {
+    const {from, to} = data
+    dispatch(get_route(from, to))
   }
 
-  selectOnClick = () => {
-    this.props.get_address()
+  const selectOnClick = () => {
+    props.get_address()
   }
 
-  selectOnChange = (e) => this.setState({ [e.target.name]: e.target.value })
-
-  selectOptions = () => {
-    const MyAdresses = this.props.MyAdresses
-
+  const selectOptions = () => {
+    const MyAdresses = props.MyAdresses
     return MyAdresses.map(val => ({label: val.toString(), value: val.toString(), id: val.toString()}))
   }
 
-  selectFromOptions = () => this.selectOptions().filter(address => address.value !== this.state.to ? address : "")
+  const selectFromOptions = () => selectOptions().filter(address => address.value !== {to} ? address : "")
+  const selectToOptions = () => selectOptions().filter(address => address.value !== {from} ? address : "")
 
-  selectToOptions = () => this.selectOptions().filter(address => address.value !== this.state.from ? address : "")
+  const selectOnChangeFrom = (e) => setFrom(e.target.value)
+  const selectOnChangeTo = (e) => setTo(e.target.value)
 
-  render () {
+  return (
+    <div className="routeForm">
+      <form className="routeForm__form" id="routeForm" onSubmit={handleSubmit(onSubmit)}>
+        <div className="routeForm__selectors">
+          <select role="selectFrom" className="routeForm__select " onClick={selectOnClick} {...register("from")} onChange={(e)=> selectOnChangeFrom(e)}>
+            <option value="" selected disabled>Откуда</option>
+            {selectFromOptions().map((option) => (
+              <option key={option.id} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <select className="routeForm__select routeForm__select--last" onClick={selectOnClick} {...register("to")} onChange={(e)=> selectOnChangeTo(e)}>
+            <option value="" selected disabled>Куда</option>
+            {selectToOptions().map((option) => (
+              <option key={option.id} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+        </div>
+        <div className="tariffs">
+          <ul className="tariff__list">
+            <li className="tariff__item tariff__item--active" 
+                onClick={(e) => toggleClick(e)}>
 
-    return (
-      <div className="routeForm">
-        <form className="routeForm__form" id="routeForm" onSubmit={(e) => this.handleSubmit(e)}>
-          <div className="routeForm__selectors">
-            <select name="from" className="routeForm__select " onClick={this.selectOnClick} onChange={(e) => this.selectOnChange(e)}>
-              <option value="" selected disabled>Откуда</option>
-              {this.selectFromOptions().map((option) => (
-                <option key={option.id} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-            <select name="to" className="routeForm__select routeForm__select--last" onClick={this.selectOnClick} onChange={(e) => this.selectOnChange(e)}>
-              <option value="" selected disabled>Куда</option>
-              {this.selectToOptions().map((option) => (
-                <option key={option.id} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-          </div>
-          <div className="tariffs">
-            <ul className="tariff__list">
-              <li className="tariff__item tariff__item--active" 
-                  onClick={(e) => this.toggleClick(e)}>
+              <div className="tariff__title">Стандарт</div>
+              <div className="tariff__price-title">Cтоимость</div>
+              <div className="tariff__price">150 ₽</div>
+              <img src={standard} alt="standard"/>
+            </li>
+            <li className="tariff__item" 
+                onClick={(e) => toggleClick(e)}>
 
-                <div className="tariff__title">Стандарт</div>
-                <div className="tariff__price-title">Cтоимость</div>
-                <div className="tariff__price">150 ₽</div>
-                <img src={standard} alt="standard"/>
-              </li>
-              <li className="tariff__item" 
-                  onClick={(e) => this.toggleClick(e)}>
+              <div className="tariff__title">Премиум</div>
+              <div className="tariff__price-title">Cтоимость</div>
+              <div className="tariff__price">250 ₽</div>
+              <img src={premium} className="img-premium" alt="premium"/>
+            </li>
+            <li className="tariff__item" 
+                onClick={(e) => toggleClick(e)}>
 
-                <div className="tariff__title">Премиум</div>
-                <div className="tariff__price-title">Cтоимость</div>
-                <div className="tariff__price">250 ₽</div>
-                <img src={premium} className="img-premium" alt="premium"/>
-              </li>
-              <li className="tariff__item" 
-                  onClick={(e) => this.toggleClick(e)}>
-
-                <div className="tariff__title">Бизнес</div>
-                <div className="tariff__price-title">Cтоимость</div>
-                <div className="tariff__price">300 ₽</div>
-                <img src={business} alt="business"></img>
-              </li>
-            </ul>
-            <input type='submit' className="routeForm-btn" value='Заказать'></input>
-          </div>
-        </form>
-      </div>
-    ) 
-  }
+              <div className="tariff__title">Бизнес</div>
+              <div className="tariff__price-title">Cтоимость</div>
+              <div className="tariff__price">300 ₽</div>
+              <img src={business} alt="business"></img>
+            </li>
+          </ul>
+          <input type='submit' className="routeForm-btn" value='Заказать'></input>
+        </div>
+      </form>
+    </div>
+  ) 
 }
 
 export const ConnectedRouteForm = connect(

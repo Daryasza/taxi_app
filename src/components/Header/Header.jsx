@@ -1,5 +1,4 @@
 import React from 'react'
-import {bool, func} from 'prop-types'
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -9,7 +8,7 @@ import './Header.scss'
 import logo from '../../assets/logo.svg'
 
 
-function Header (props) {
+export function Header (props) {
   const onLogOut = (e) => {
     e.preventDefault()
     localStorage.removeItem('isLogged')
@@ -31,12 +30,7 @@ function Header (props) {
   )
 }
 
-Header.propTypes = {
-  isLoggedIn: bool,
-  logout: func,
-}
-
-export default connect(
+export const ConnectedHeader =  connect(
   (state) => ({isLoggedIn: state.authReducer.isLoggedIn}),
   {logout}
 )(Header)

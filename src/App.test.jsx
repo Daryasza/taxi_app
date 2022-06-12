@@ -5,7 +5,7 @@ import App from "./App";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 
-jest.mock("./pages/LoginPage/LoginPage.jsx", () => ({ WithAuthLoginPage: () => <div>Login Page</div> }));
+jest.mock("./pages/LoginPage/LoginPage.jsx", () => ({ ConnectedLoginPage: () => <div>Login Page</div> }));
 
 describe("App", () => {
   it("renders correctly", () => {

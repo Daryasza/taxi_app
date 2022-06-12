@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Header from "./Header"; 
+import {ConnectedHeader} from "./Header"; 
 
 import { Provider } from 'react-redux';
 import { BrowserRouter}  from "react-router-dom";
@@ -21,7 +21,7 @@ describe('Header', () => {
   });
 
   it('renders correctly', () => {
-    const { container } = render(<Provider store={store}><Header /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedHeader /></Provider>, {wrapper: BrowserRouter})
     expect(container.innerHTML).toMatch('Карта')
     expect(container.innerHTML).toMatch('Профиль')
     expect(container.innerHTML).toMatch('Выйти')

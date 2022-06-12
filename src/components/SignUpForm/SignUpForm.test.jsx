@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import { ConnectedSignUpPage } from './SignUpPage'
+import { ConnentedSignUpForm } from './SignUpForm'
 import { Provider } from 'react-redux'
 import { BrowserRouter}  from "react-router-dom"
 
@@ -10,11 +10,7 @@ import authReducer from "../../app/reducers/authReducer"
 
 let store
 
-jest.mock("../../components/SignUpForm/SignUpForm.jsx", () => ({
-  ConnentedSignUpForm: () => <div>SignUpForm</div> 
-}));
-
-describe("SignUpPage", () => {
+describe("SignUpForm", () => {
 
   beforeEach(() => {
     store = createStore(
@@ -25,7 +21,8 @@ describe("SignUpPage", () => {
   })
 
   it("renders correctly", () => {
-    const { container } = render(<Provider store={store}><ConnectedSignUpPage /></Provider>, {wrapper: BrowserRouter});
-    expect(container.innerHTML).toMatch('SignUpForm')
+    const { getByLabelText } = render(<Provider store={store}><ConnentedSignUpForm /></Provider>, {wrapper: BrowserRouter});
+    expect(getByLabelText('Email*')).toHaveAttribute('name', 'email')
+    expect(getByLabelText('Придумайте пароль')).toHaveAttribute('name', 'password')
   });
 });

@@ -1,14 +1,19 @@
 import React from "react";
-import { WithAuthLoginPage } from './LoginPage.jsx'
+import { ConnectedLoginPage } from './LoginPage.jsx'
 import { BrowserRouter}  from "react-router-dom";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from 'react-redux';
 
 import { createStore } from 'redux'
 import { combineReducers } from "redux";
 import authReducer from "../../app/reducers/authReducer";
 
+
 let store
+
+jest.mock("../../components/LoginForm/LoginForm", () => ({
+  ConnectedLoginForm: () => <div>LoginForm</div> 
+}));
 
 describe("LoginPage", () => {
   beforeEach(() => {
@@ -20,8 +25,7 @@ describe("LoginPage", () => {
   });
 
   it("renders correctly", () => {
-    render(<Provider store={store}><WithAuthLoginPage /></Provider>, {wrapper: BrowserRouter})
-    expect(screen.getByLabelText('Email:')).toHaveAttribute('name', 'email')
-    expect(screen.getByLabelText('Пароль:')).toHaveAttribute('name', 'password')
+    const { container } = render(<Provider store={store}><ConnectedLoginPage /></Provider>, {wrapper: BrowserRouter})
+    expect(container.innerHTML).toMatch('LoginForm')
   });
 });

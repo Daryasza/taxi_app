@@ -9,15 +9,3 @@
   width: 100%;
   height: 100%;
 }
-
-.modal--map {
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  .form__subtitle {
-    text-align: center;
-  }
-}

@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import { WithAuthMapPage } from './MapPage'
+import { ConnectedMapPage } from './MapPage'
 import { Provider } from 'react-redux'
 import { BrowserRouter}  from "react-router-dom"
 import { createStore } from 'redux'
@@ -12,6 +12,18 @@ let store
 
 jest.mock("../../components/Map/Map", () => ({
   ConnectedMap: () => <div>Map</div> 
+}));
+
+jest.mock("../../components/Header/Header.jsx", () => ({
+  ConnectedHeader: () => <div>Header</div> 
+}));
+
+jest.mock("../../components/RouteForm/RouteForm.jsx", () => ({
+  ConnectedRouteForm: () => <div>RouteForm</div> 
+}));
+
+jest.mock("../../components/MapModal/MapModal.jsx", () => ({
+  MapModal: () => <div>MapModal</div> 
 }));
 
 describe("Map Page", () => {
@@ -26,12 +38,12 @@ describe("Map Page", () => {
   });
 
   it("renders correctly", () => {
-    const { container } = render(<Provider store={store}><WithAuthMapPage /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedMapPage /></Provider>, {wrapper: BrowserRouter})
     expect(container.innerHTML).toMatch('Map')
   });
 
   it('contains expected className', () => {
-    const { container } = render(<Provider store={store}><WithAuthMapPage /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedMapPage /></Provider>, {wrapper: BrowserRouter})
     expect(container.getElementsByClassName('mapPage').length).toBe(1);
   })
 });
