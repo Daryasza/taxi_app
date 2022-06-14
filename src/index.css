@@ -1,0 +1,23 @@
+@import-normalize;
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+code {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0;
+}
+

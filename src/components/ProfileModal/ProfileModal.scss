@@ -1,0 +1,20 @@
+.modal {
+  margin-top: 160px;
+  width: 60%;
+  padding: 70px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form__subtitle {
+    margin-bottom: 30px;
+  }
+
+  .payform-btn {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+}

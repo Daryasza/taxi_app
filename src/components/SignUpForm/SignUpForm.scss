@@ -1,0 +1,25 @@
+.input__name {
+  font-weight: 700;
+}
+
+.input__name--grey {
+  color: #7B7B7B;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.form-wrapper--signup {
+  height: 430px;
+}
+
+.submit {
+  padding: 0.625rem;
+  background-color: #FDBF5A;
+  border-radius: 70px;
+  border: 0;
+  width: 90%;
+
+  &:active {
+    background-color: #FFA842;
+  }
+}

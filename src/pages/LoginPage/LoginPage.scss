@@ -1,0 +1,44 @@
+@import '../../media.scss';
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.left-col {
+  width: 30%;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile {
+    display: none;
+  }
+
+  .logo {
+    width: 14rem;
+
+    @include tablet {
+      transform: rotate(-90deg);
+    }
+
+  }
+}
+
+.right-col {
+  position: relative;
+  width: 70%;
+  height: 100%;
+
+  @include mobile {
+    width: 100%;
+  }
+}
