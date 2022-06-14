@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 import './LoginForm.scss'
 
 
-export function LoginForm({ useDispatchHook = useDispatch }) {
-  const dispatch = useDispatchHook();
+export function LoginForm(props) {
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   
   const onSubmit = (data) => {
@@ -56,6 +56,6 @@ export function LoginForm({ useDispatchHook = useDispatch }) {
 }
 
 export const ConnectedLoginForm = connect(
-  (state) => ({isLoggedIn: state.authReducer.isLoggedIn}),
+  null,
   { authenticate }
 )(LoginForm)
