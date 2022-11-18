@@ -10,7 +10,7 @@ import {access} from '../../env.js'
 mapboxgl.accessToken = access.accessToken
 
 export class Map extends Component {
-  map = null
+  map = null;
 
   componentDidMount() {
     this.map = new mapboxgl.Map({
@@ -25,8 +25,8 @@ export class Map extends Component {
   }
 
   render() {
-    const isRoute = this.props.isRoute
-    const MyRoute = this.props.MyRoute
+    const isRoute = this.props.isRoute;
+    const MyRoute = this.props.MyRoute;
 
     return  (
       <div className='map-main'> 

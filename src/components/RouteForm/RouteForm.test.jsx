@@ -1,7 +1,7 @@
 import React from "react"
 import { ConnectedRouteForm } from './RouteForm'
-import { BrowserRouter }  from "react-router-dom"
-import { render, screen, act, fireEvent } from "@testing-library/react"
+import { HashRouter }  from "react-router-dom"
+import { render } from "@testing-library/react"
 import { Provider } from 'react-redux'
 
 import { createStore } from 'redux'
@@ -23,7 +23,7 @@ describe("LoginPage", () => {
   })
 
   it("renders correctly", () => {
-    const { container } = render(<Provider store={store}><ConnectedRouteForm /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedRouteForm /></Provider>, {wrapper: HashRouter})
     expect(container.innerHTML).toMatch('Откуда') 
     expect(container.innerHTML).toMatch('Куда') 
   });

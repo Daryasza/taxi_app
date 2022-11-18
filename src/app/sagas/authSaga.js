@@ -13,10 +13,15 @@ export function* authSaga(action) {
     localStorage.setItem('TOKEN', res.token)
 
   } else {
-    alert(res.error)
+    alert('Неверный логин или пароль. Попробуйте снова или зарегестрируйтесь!');
+    console.log(res.error);
   }
 }
 
 export function* authorizationSaga(){
   yield takeEvery(AUTHENTICATE, authSaga);
 };
+
+
+
+

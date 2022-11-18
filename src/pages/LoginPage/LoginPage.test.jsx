@@ -1,6 +1,6 @@
 import React from "react";
 import { ConnectedLoginPage } from './LoginPage.jsx'
-import { BrowserRouter}  from "react-router-dom";
+import { HashRouter}  from "react-router-dom";
 import { render } from "@testing-library/react";
 import { Provider } from 'react-redux';
 
@@ -25,7 +25,7 @@ describe("LoginPage", () => {
   });
 
   it("renders correctly", () => {
-    const { container } = render(<Provider store={store}><ConnectedLoginPage /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedLoginPage /></Provider>, {wrapper: HashRouter})
     expect(container.innerHTML).toMatch('LoginForm')
   });
 });
