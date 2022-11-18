@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import {ConnectedHeader} from "./Header"; 
 
 import { Provider } from 'react-redux';
-import { BrowserRouter}  from "react-router-dom";
+import { HashRouter}  from "react-router-dom";
 
 import authReducer from "../../app/reducers/authReducer";
 import { createStore } from 'redux'
@@ -21,7 +21,7 @@ describe('Header', () => {
   });
 
   it('renders correctly', () => {
-    const { container } = render(<Provider store={store}><ConnectedHeader /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedHeader /></Provider>, {wrapper: HashRouter})
     expect(container.innerHTML).toMatch('Карта')
     expect(container.innerHTML).toMatch('Профиль')
     expect(container.innerHTML).toMatch('Выйти')

@@ -2,7 +2,7 @@ import React from "react"
 import { render } from "@testing-library/react"
 import { ConnectedSignUpPage } from './SignUpPage'
 import { Provider } from 'react-redux'
-import { BrowserRouter}  from "react-router-dom"
+import { HashRouter}  from "react-router-dom"
 
 import { createStore } from 'redux'
 import { combineReducers } from "redux"
@@ -25,7 +25,7 @@ describe("SignUpPage", () => {
   })
 
   it("renders correctly", () => {
-    const { container } = render(<Provider store={store}><ConnectedSignUpPage /></Provider>, {wrapper: BrowserRouter});
+    const { container } = render(<Provider store={store}><ConnectedSignUpPage /></Provider>, {wrapper: HashRouter});
     expect(container.innerHTML).toMatch('SignUpForm')
   });
 });

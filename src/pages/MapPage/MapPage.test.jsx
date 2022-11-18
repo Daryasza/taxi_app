@@ -2,7 +2,7 @@ import React from "react"
 import { render } from "@testing-library/react"
 import { ConnectedMapPage } from './MapPage'
 import { Provider } from 'react-redux'
-import { BrowserRouter}  from "react-router-dom"
+import { HashRouter}  from "react-router-dom"
 import { createStore } from 'redux'
 import { combineReducers } from "redux"
 import cardReducer from "../../app/reducers/cardReducer"
@@ -38,12 +38,12 @@ describe("Map Page", () => {
   });
 
   it("renders correctly", () => {
-    const { container } = render(<Provider store={store}><ConnectedMapPage /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedMapPage /></Provider>, {wrapper: HashRouter})
     expect(container.innerHTML).toMatch('Map')
   });
 
   it('contains expected className', () => {
-    const { container } = render(<Provider store={store}><ConnectedMapPage /></Provider>, {wrapper: BrowserRouter})
+    const { container } = render(<Provider store={store}><ConnectedMapPage /></Provider>, {wrapper: HashRouter})
     expect(container.getElementsByClassName('mapPage').length).toBe(1);
   })
 });

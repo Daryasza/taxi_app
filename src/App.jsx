@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route
 } from "react-router-dom";
@@ -22,7 +22,7 @@ class App extends Component {
   
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path='/login' element={ <ConnectedLoginPage /> }/>
           <Route path='/signup' element={ <ConnectedSignUpPage /> }/>
@@ -30,7 +30,7 @@ class App extends Component {
           <Route path="/" element={<PrivateRoute><ConnectedMapPage /></PrivateRoute>}/>
           <Route path="*" element={<NotFound404/> }/>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }
