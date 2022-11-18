@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/taxi_app/static/css/main.3fde639c.css",
-    "main.js": "/taxi_app/static/js/main.03beb0e8.js",
+    "main.css": "/taxi_app/static/css/main.0a891c76.css",
+    "main.js": "/taxi_app/static/js/main.5ce579df.js",
     "static/js/787.0b092cc9.chunk.js": "/taxi_app/static/js/787.0b092cc9.chunk.js",
     "static/media/map.svg": "/taxi_app/static/media/map.f7cd08521711a75ee10313ab2b1a3f3a.svg",
     "static/media/logo.svg": "/taxi_app/static/media/logo.fef7dd52a6ae9d1158e5dc4f1ff2734b.svg",
@@ -12,12 +12,12 @@
     "static/media/arrow.svg": "/taxi_app/static/media/arrow.4a6b77835bdf14f75f53.svg",
     "static/media/cardChip.svg": "/taxi_app/static/media/cardChip.c84e78516ea2acc7fa0373212a388630.svg",
     "static/media/from.svg": "/taxi_app/static/media/from.1e47fcf85218d21675ba.svg",
-    "main.3fde639c.css.map": "/taxi_app/static/css/main.3fde639c.css.map",
-    "main.03beb0e8.js.map": "/taxi_app/static/js/main.03beb0e8.js.map",
+    "main.0a891c76.css.map": "/taxi_app/static/css/main.0a891c76.css.map",
+    "main.5ce579df.js.map": "/taxi_app/static/js/main.5ce579df.js.map",
     "787.0b092cc9.chunk.js.map": "/taxi_app/static/js/787.0b092cc9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3fde639c.css",
-    "static/js/main.03beb0e8.js"
+    "static/css/main.0a891c76.css",
+    "static/js/main.5ce579df.js"
   ]
 }
