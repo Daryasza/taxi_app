@@ -1,13 +1,22 @@
 {
   "name": "loft-taxi",
   "version": "0.1.0",
+<<<<<<< HEAD
   "homepage": "https://daryasza.github.io/taxi_app",
+=======
+  "homepage": "http://daryasza.github.io/taxi_app/",
+>>>>>>> 8f2572c6a860ec2bfe8294045027aceb83b3228c
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
+=======
+    "dotenv": "^16.0.1",
+    "gh-pages": "^4.0.0",
+>>>>>>> 8f2572c6a860ec2bfe8294045027aceb83b3228c
     "mapbox-gl": "^2.8.2",
     "normalize.css": "^8.0.1",
     "path-browserify": "^1.0.1",
@@ -55,6 +64,7 @@
     ]
   },
   "browserslist": [
+<<<<<<< HEAD
     ">0.2%", 
     "not dead", 
     "not ie 11", 
@@ -63,6 +73,15 @@
     "not android < 51"
   ],
 
+=======
+    ">0.2%",
+    "not dead",
+    "not ie 11",
+    "not chrome < 51",
+    "not safari < 10",
+    "not android < 51"
+  ],
+>>>>>>> 8f2572c6a860ec2bfe8294045027aceb83b3228c
   "devDependencies": {
     "@babel/core": "^7.18.0",
     "@babel/preset-env": "^7.18.0",

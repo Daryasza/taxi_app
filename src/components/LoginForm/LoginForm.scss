@@ -93,6 +93,13 @@
   margin-bottom: 10px;
 }
 
+.auth_error {
+  font-size: 10px;
+  color: red;
+  text-decoration: underline;
+  display: none;
+}
+
 .form__forgottenPass-wrapper {
   width: 100%;
   display: flex;
