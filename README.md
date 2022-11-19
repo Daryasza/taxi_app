@@ -1,5 +1,9 @@
 # Taxi App
 
+<p align="center">
+    <img width="500" alt="Screenshot 2022-11-19 at 04 26 05" src="https://user-images.githubusercontent.com/92443952/202828035-af4e04ff-5e94-4ad3-bbf3-c217b852a869.png">
+</p>
+
 ## Description 
 
 Frontend part was developed by me during the process of learning React.js at LoftSchool.
