@@ -31,13 +31,13 @@ at your browser console.
     after witch `http://localhost:3000` opens and you can make your improvements locally.
     
 
-## Supported browsers:
+## Supported browsers
 
 | Chrome  | Android (WebView) |  Safari | Safari on iOS | Edge | IE |
 | :---:   | :---: | :---: | :---: | :---: | :---: |
 |  ✓ 51+  | ✓ 51+   |   ✓ 10+ | ✓12+ |✓ 12+ |        ×    |
 
-## Known issues:
+## Known issues
 
 * Login does not work properly on the server side. Please register to be authenticated. 
 * Server response is too long.
