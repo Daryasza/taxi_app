@@ -5,9 +5,9 @@ import './Map.scss'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import {access} from '../../env.js'
+import {REACT_APP_MAPBOX_TOKEN, REACT_APP_MAPBOX_STYLE_LINK} from '../../env.js'
 
-mapboxgl.accessToken = access.accessToken
+mapboxgl.accessToken = REACT_APP_MAPBOX_TOKEN;
 
 export class Map extends Component {
   map = null
@@ -15,7 +15,7 @@ export class Map extends Component {
   componentDidMount() {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: access.mapStyleLink,
+      style: REACT_APP_MAPBOX_STYLE_LINK,
       testMode: true,
     })
   }
